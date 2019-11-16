@@ -1,26 +1,17 @@
 ;; The first three lines of this file were inserted by DrRacket. They record metadata
 ;; about the language level of this file in a form that our tools can easily process.
 #reader(lib "htdp-beginner-reader.ss" "lang")((modname weather) (read-case-sensitive #t) (teachpacks ()) (htdp-settings #(#t constructor repeating-decimal #f #t none #f () #t)))
-;;
-;; *****************************************
-;; Sebastian Regalado (ID# 20759473)
-;; CS 135 Winter 2019
-;; Assignment 02, Question 2
-;; *****************************************
-;;
 
-
-;; Presure symbols
-;; 
 
 ;; Pressure change symbols
 ;; 'steady 'rising-slowly 'rising-quickly 'falling-slowly 'falling-quickly
 
-;; ==== Question 2a ========================
-
-;; Rain-p is (anyof 'low 'moderate 'high)
+; Rain-p is (anyof 'low 'moderate 'high)
 ;; Rain-pc is (anyof 'steady 'rising-slowly 'rising-quickly
 ;;                   'falling-slowly 'falling-quickly)
+
+
+;; =================     Conditionals only     ========================
 
 ;; (going-to-rain?/cond rain pressure pressure-change) produces a prediction
 ;;  of the future raining-state
@@ -54,7 +45,7 @@
 (check-expect (going-to-rain?/cond true 'high 'falling-slowly) false)
 
 
-;; ==== Question 2b ========================
+;; =================      Using and/or only     ========================
 
 ;; (going-to-rain?/cond rain pressure pressure-change) produces a prediction
 ;;  of the future raining-state
