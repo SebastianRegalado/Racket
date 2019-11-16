@@ -1,26 +1,24 @@
 ;; The first three lines of this file were inserted by DrRacket. They record metadata
 ;; about the language level of this file in a form that our tools can easily process.
 #reader(lib "htdp-beginner-reader.ss" "lang")((modname day-of-the-week-calculator) (read-case-sensitive #t) (teachpacks ()) (htdp-settings #(#t constructor repeating-decimal #f #t none #f () #t)))
-;;
-;; *****************************************
-;; Sebastian Regalado (ID# 20759473)
-;; CS 135 Winter 2019
-;; Assignment 02, Bonus question
-;; *****************************************
-;;
 
-;; ==== Bonus question ========================
-; Symbols for days of the week
-; 'Monday 'Tuesday 'Wednesday 'Thursday 'Friday 'Saturday 'Sunday
+;; Symbols for days of the week
+;; 'Monday 'Tuesday 'Wednesday 'Thursday 'Friday 'Saturday 'Sunday
 
-;; (years-number full-date) produces the number of years from
-;;  1753 to full-date
-;; years-number: Nat -> Nat
-;; Example:
-(check-expect (years-number 17530501) 1753)
 
+;; In this solution we use Zeller's Rule in order to find the day of
+;; the week of a given date. For more information check
+;; http://mathforum.org/dr.math/faq/faq.calendar.html
+;; We define years-number, months-number, days-number, C, D, and f as in 
+;; the above algorithm. fr represents the (positive) remainder of mod 7 
+
+;; (years-number full-date) produces the number of years in full-date
 (define (years-number full-date)
   (quotient full-date 10000))
+
+;; (months-number full-date) produces the corresponding month-number of full-date
+(define (months-number full-date)
+  (+ (remainder (+ 9 (remainder (quotient full-date 100) 100)) 12) 1))
 
 ;; (C full-date)
 ;; C: Nat -> Nat
@@ -28,11 +26,6 @@
 (define (C full-date)
   (quotient (years-number full-date) 100))
 
-;; (months-number full-date)
-;; months-number: Nat -> Nat
-
-(define (months-number full-date)
-  (+ (remainder (+ 9 (remainder (quotient full-date 100) 100)) 12) 1))
 
 ;; (days-number full-date)
 ;; days-number: Nat -> Nat
